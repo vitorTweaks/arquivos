@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfólio | Vitor Hugo</title>
+  <style>
+    html {
+  scroll-behavior: smooth;
+}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #121933;
+      --card: rgba(255, 255, 255, 0.06);
+      --line: rgba(255, 255, 255, 0.12);
+      --text: #f5f7ff;
+      --muted: #b8c0e0;
+      --accent: #5b8cff;
+      --accent-2: #7c4dff;
+      --success: #22c55e;
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124, 77, 255, 0.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(91, 140, 255, 0.18), transparent 25%),
+        linear-gradient(135deg, #060913, #0b1020 45%, #10172d);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      background: rgba(6, 9, 19, 0.7);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+    }
+
+    .logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: 0.3s;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 90px 0 70px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid rgba(91, 140, 255, 0.35);
+      border-radius: 999px;
+      color: #dce6ff;
+      background: rgba(91, 140, 255, 0.1);
+      margin-bottom: 18px;
+      font-size: 0.9rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 640px;
+      margin-bottom: 28px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.3s;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: white;
+      box-shadow: 0 10px 30px rgba(91, 140, 255, 0.28);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+
+    .btn {
+  transition: all 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(91, 140, 255, 0.3);
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+    .btn-secondary {
+      border-color: var(--line);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255, 255, 255, 0.24);
+      transform: translateY(-2px);
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -80px auto auto -80px;
+      width: 200px;
+      height: 200px;
+      background: rgba(124, 77, 255, 0.18);
+      filter: blur(30px);
+      border-radius: 50%;
+    }
+
+    .profile-circle {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: grid;
+      place-items: center;
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-card h2 {
+      position: relative;
+      z-index: 1;
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+
+    .hero-card p {
+      position: relative;
+      z-index: 1;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mini-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .mini-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--success);
+      flex-shrink: 0;
+    }
+
+    section {
+      padding: 32px 0 22px;
+    }
+
+    .section-title {
+      font-size: 1.9rem;
+      margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      margin-bottom: 28px;
+      max-width: 700px;
+    }
+
+    .about-grid,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin-bottom: 14px;
+      font-size: 1.2rem;
+    }
+
+    .card p,
+    .card li,
+    .contact-link {
+      color: var(--muted);
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .skill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(91, 140, 255, 0.12);
+      border: 1px solid rgba(91, 140, 255, 0.24);
+      color: #e8efff;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      transition: 0.3s;
+    }
+
+    .project-card:hover {
+        .project-card {
+  transition: all 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  border-color: rgba(91, 140, 255, 0.4);
+}
+      transform: translateY(-5px);
+      border-color: rgba(91, 140, 255, 0.4);
+    }
+
+    .project-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      gap: 10px;
+    }
+
+    .project-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(91, 140, 255, 0.18), rgba(124, 77, 255, 0.18));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 1.2rem;
+    }
+
+    .project-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.15rem;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      margin-bottom: 16px;
+      min-height: 96px;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .project-tags span {
+      font-size: 0.82rem;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: #dbe3ff;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .project-links a,
+    .contact-link {
+      text-decoration: none;
+      color: #dbe6ff;
+      font-weight: 700;
+    }
+
+    .project-links a:hover,
+    .contact-link:hover {
+      color: white;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .contact-item {
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    footer {
+      padding: 40px 0 50px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .about-grid,
+      .contact-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card p {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .hero {
+        padding-top: 60px;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+    /* ===== EFEITO LIQUIDO ===== */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.liquid-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.liquid-blob {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.5;
+  transition: transform 0.2s ease;
+}
+
+/* cores */
+.blob-1 {
+  background: #5b8cff;
+  top: 10%;
+  left: 10%;
+}
+
+.blob-2 {
+  background: #7c4dff;
+  top: 40%;
+  right: 10%;
+}
+
+.blob-3 {
+  background: #00d4ff;
+  bottom: 10%;
+  left: 40%;
+}
+
+/* deixa o conteúdo na frente */
+.hero .container {
+  position: relative;
+  z-index: 2;
+
+  /* ===== EFEITO LIQUIDO ===== */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.liquid-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.liquid-blob {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 1;
+  background: red;
+  transition: transform 0.2s ease;
+  mix-blend-mode: screen;
+}
+
+/* cores e posições */
+.blob-1 {
+  background: #5b8cff;
+  top: 10%;
+  left: 10%;
+}
+
+.blob-2 {
+  background: #7c4dff;
+  top: 40%;
+  right: 10%;
+}
+
+.blob-3 {
+  background: #00d4ff;
+  bottom: 10%;
+  left: 40%;
+}
+
+/* deixa conteúdo na frente */
+.hero .container {
+  position: relative;
+  z-index: 2;
+}
+}
+/* animação ao scroll */
+.hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">Vitor<span>Tweaks</span></div>
+      <ul class="nav-links">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#habilidades">Habilidades</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+
+  <!-- 🔥 FUNDO LIQUIDO -->
+  <div class="liquid-bg">
+    <div class="liquid-blob blob-1"></div>
+    <div class="liquid-blob blob-2"></div>
+    <div class="liquid-blob blob-3"></div>
+  </div>
+
+  <div class="container hero-grid">
+
+    <div>
+      <span class="tag">Portfólio de Desenvolvedor</span>
+      <h1>Olá, eu sou <span>Vitor Hugo</span>.</h1>
+      <p>
+        Gosto de tecnologia e programação, estou cursando Engenharia de Software e buscando oportunidades para crescer na área, ganhar experiência prática e contribuir com projetos reais.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://github.com/vitorTweaks" target="_blank">Ver GitHub</a>
+        <a class="btn btn-secondary" href="#contato">Entrar em contato</a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="profile-circle">VH</div>
+      <h2>Desenvolvedor em formação</h2>
+      <p>
+        Focado em evoluir em desenvolvimento web, lógica de programação e versionamento com Git e GitHub.
+      </p>
+      <div class="mini-list">
+        <div class="mini-item">
+          <span class="mini-dot"></span>
+          <span>Buscando oportunidades na área de tecnologia</span>
+        </div>
+        <div class="mini-item">
+          <span class="mini-dot"></span>
+          <span>Estudando e praticando projetos reais</span>
+        </div>
+        <div class="mini-item">
+          <span class="mini-dot"></span>
+          <span>Interesse em front-end, back-end e .NET</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+    <section id="sobre">
+      <div class="container">
+        <h2 class="section-title">Sobre mim</h2>
+        <p class="section-subtitle">
+          Estou construindo minha trajetória na programação com foco em aprendizado constante, projetos práticos e evolução profissional.
+        </p>
+
+        <div class="about-grid">
+          <div class="card">
+            <h3>Minha trajetória</h3>
+            <p>
+              Sou Vitor Hugo. Atualmente curso Engenharia de Software e sigo desenvolvendo meus conhecimentos por meio de estudos, cursos e projetos pessoais. Meu objetivo é conquistar oportunidades na área para colocar minhas habilidades em prática e continuar evoluindo como desenvolvedor.
+            </p>
+          </div>
+
+          <div class="card" id="habilidades">
+            <h3>Habilidades</h3>
+            <div class="skills">
+              <span class="skill">HTML</span>
+              <span class="skill">CSS</span>
+              <span class="skill">JavaScript</span>
+              <span class="skill">Git</span>
+              <span class="skill">GitHub</span>
+              <span class="skill">.NET</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projetos">
+      <div class="container">
+        <h2 class="section-title">Projetos</h2>
+        <p class="section-subtitle">
+          Alguns dos projetos que desenvolvi durante meus estudos.
+        </p>
+
+        <div class="projects-grid">
+
+          <article class="project-card">
+            <div class="project-top">
+              <div class="project-icon">🧮</div>
+            </div>
+            <h3>Calculadora Web</h3>
+            <p>
+              Calculadora responsiva com operações básicas, interface moderna e interativa.
+            </p>
+            <div class="project-tags">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+            </div>
+            <div class="project-links">
+              <a href="https://vitortweaks.github.io/calculadora-web/" target="_blank">Ver projeto</a>
+              <a href="https://github.com/vitorTweaks" target="_blank">GitHub</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <div class="project-icon">🎮</div>
+            </div>
+            <h3>Sistema de Aluguel de Jogos</h3>
+            <p>
+              Sistema que simula aluguel de jogos com lógica de interação e controle de estado.
+            </p>
+            <div class="project-tags">
+              <span>JavaScript</span>
+              <span>HTML</span>
+              <span>CSS</span>
+            </div>
+            <div class="project-links">
+              <a href="https://vitortweaks.github.io/projeto-alugames/" target="_blank">Ver projeto</a>
+              <a href="https://github.com/vitorTweaks" target="_blank">GitHub</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <div class="project-icon">🛒</div>
+            </div>
+            <h3>Carrinho de Compras</h3>
+            <p>
+              Sistema de carrinho com adição de produtos, cálculo automático e validações.
+            </p>
+            <div class="project-tags">
+              <span>JavaScript</span>
+              <span>Lógica</span>
+              <span>DOM</span>
+            </div>
+            <div class="project-links">
+              <a href="https://carrinho-compras-black.vercel.app/" target="_blank">Ver projeto</a>
+              <a href="https://github.com/vitorTweaks" target="_blank">GitHub</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <div class="project-icon">🔢</div>
+            </div>
+            <h3>Jogo do Número Secreto</h3>
+            <p>
+              Jogo interativo onde o usuário tenta adivinhar um número com feedback dinâmico.
+            </p>
+            <div class="project-tags">
+              <span>JavaScript</span>
+              <span>Lógica</span>
+              <span>Interação</span>
+            </div>
+            <div class="project-links">
+              <a href="https://vitortweaks.github.io/jogo-do-numero-secreto/" target="_blank">Ver projeto</a>
+              <a href="https://github.com/vitorTweaks" target="_blank">GitHub</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <div class="project-icon">🎲</div>
+            </div>
+            <h3>Sorteador de Números</h3>
+            <p>
+              Aplicação simples para sorteio de números aleatórios com base em parâmetros definidos.
+            </p>
+            <div class="project-tags">
+              <span>JavaScript</span>
+              <span>Funções</span>
+              <span>Random</span>
+            </div>
+            <div class="project-links">
+              <a href="#" target="_blank">Em breve</a>
+              <a href="https://github.com/vitorTweaks" target="_blank">GitHub</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="container">
+        <h2 class="section-title">Contato</h2>
+        <p class="section-subtitle">
+          Estou aberto a novas conexões, oportunidades e projetos. Você pode falar comigo pelos links abaixo.
+        </p>
+
+        <div class="contact-grid">
+          <div class="card">
+            <h3>Vamos conversar</h3>
+            <p>
+              Caso queira entrar em contato para oportunidades, networking ou conhecer mais sobre meu trabalho, estou disponível.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Meus links</h3>
+            <div class="contact-list">
+              <div class="contact-item">
+                <a class="contact-link" href="mailto:vitorhqrr@gmail.com">vitorhqrr@gmail.com</a>
+              </div>
+              <div class="contact-item">
+                <a class="contact-link" href="https://github.com/vitorTweaks" target="_blank">GitHub: vitorTweaks</a>
+              </div>
+              <div class="contact-item">
+                <a class="contact-link" href="https://www.instagram.com/vitor.qr/" target="_blank">Instagram: vitor.qr</a>
+              </div>
+              <div class="contact-item">
+                <a class="contact-link" href="https://www.tiktok.com/@vrtppp?is_from_webapp=1&sender_device=pc" target="_blank">TikTok: vrtppp</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Vitor Hugo. Desenvolvido com HTML e CSS.</p>
+    </div>
+  </footer>
+  <script>
+  const blob1 = document.querySelector('.blob-1');
+  const blob2 = document.querySelector('.blob-2');
+  const blob3 = document.querySelector('.blob-3');
+
+  document.addEventListener('mousemove', (e) => {
+    const x = e.clientX / window.innerWidth;
+    const y = e.clientY / window.innerHeight;
+//...
+    blob1.style.transform = `translate(${x * 50}px, ${y * 40}px)`;
+    blob2.style.transform = `translate(${-x * 60}px, ${-y * 50}px)`;
+    blob3.style.transform = `translate(${x * 30}px, ${-y * 25}px)`;
+  });
+</script>
+</body>
+</html>
